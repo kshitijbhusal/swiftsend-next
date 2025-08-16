@@ -13,7 +13,7 @@ import { Send, Download, Sun, Moon } from 'lucide-react';
 import Image from 'next/image';
 
 
-export default function page() {
+export default function Page() {
 
 
 
