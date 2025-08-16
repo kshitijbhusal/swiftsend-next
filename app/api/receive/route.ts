@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     const row = await
         prisma.message.findFirst({
             where: {
+                //@ts-expect-error: Fix it later
                 messageCode: code
             }
         })
