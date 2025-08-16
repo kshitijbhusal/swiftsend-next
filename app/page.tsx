@@ -149,7 +149,7 @@ function SendBox() {
         </div>
       </section>
 
-      <div className=' bg-red-500 w-full '>
+      <div className='  w-full '>
 
         {currentSendType == 'text' && (
           <textarea
