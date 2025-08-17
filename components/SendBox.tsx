@@ -1,3 +1,4 @@
+'use client'
 import { supabase } from '@/lib/supabaseClient'
 import axios from 'axios'
 import { useState } from 'react'
