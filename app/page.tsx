@@ -1,8 +1,4 @@
 'use client'
-import Link from 'next/link';
-import { ChartLineLinear } from '../components/InflationCard'
-import { SessionProvider, useSession, signIn, signOut } from 'next-auth/react';
-import { InterestCard } from '@/components/InterestCard';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -14,10 +10,6 @@ import Image from 'next/image';
 
 
 export default function Page() {
-
-
-
-
   const [currentTab, setCurrentTab] = useState("send")
 
   function toggleTheme() {
