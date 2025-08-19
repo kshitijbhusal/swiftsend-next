@@ -22,7 +22,7 @@ export default function Page() {
   return (
     <div className=' md:h-screen'>
       <div className='md:p-4 p-2 '>
-        <div className='bg-background-focus p-4 rounded-xl flex justify-between '>
+        <div className='bg-background-focus p-4 rounded-xl flex justify-between mt-2 '>
           <span className='text-2xl font-bold text-text-focus'>SwiftSend</span>
           <button className='text-text-focus' onClick={toggleTheme} > <Sun /> <Moon /> </button>
         </div>
