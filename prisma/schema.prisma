@@ -19,5 +19,6 @@ model Message {
   id Int @default(autoincrement()) @id
   messageCode String
   message String
+  type String @default("text")
 }
 

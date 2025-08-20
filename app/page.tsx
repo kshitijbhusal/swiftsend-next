@@ -15,16 +15,18 @@ import { ReceiveBox } from '@/components/ReceiveBox';
 
 export default function Page() {
   const [currentTab, setCurrentTab] = useState("send")
+  const [theme, setTheme] = useState(true)
 
   function toggleTheme() {
-    document.documentElement.classList.toggle('dark')
+    document.documentElement.classList.toggle("dark")
+    setTheme(!theme)
   }
   return (
     <div className=' md:h-screen'>
       <div className='md:p-4 p-2 '>
         <div className='bg-background-focus p-4 rounded-xl flex justify-between mt-2 '>
           <span className='text-2xl font-bold text-text-focus'>SwiftSend</span>
-          <button className='text-text-focus' onClick={toggleTheme} > <Sun /> <Moon /> </button>
+          <button className='text-text-focus' onClick={toggleTheme} >{theme ? (<Moon />) : (<Sun />)}  </button>
         </div>
 
       </div>

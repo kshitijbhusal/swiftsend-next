@@ -21,10 +21,16 @@ export async function GET(req: NextRequest) {
         })
 
     // check the message in the DB if it exist with the crossponding messageCode
-
+    if (!row) {
+        return NextResponse.json({
+            success: false,
+            error: "Message code expired"
+        });
+    }
     return NextResponse.json({
         success: true,
-        message: row?.message
+        message: row.message,
+        type: row.type
     })
 
 }

@@ -13,7 +13,8 @@ export function SendBox() {
 
         if (currentSendType == 'text') {
             const res = await axios.post('api/send', {
-                message: message
+                message: message,
+                type: "text"
             })
 
             if (res.status == 200) {
@@ -34,7 +35,8 @@ export function SendBox() {
             if (data) {
                 console.log(data.id)
                 const res = await axios.post('api/send', {
-                    message: data?.path
+                    message: data?.path,
+                    type: "file"
                 })
 
                 if (res.status == 200) {
@@ -54,7 +56,7 @@ export function SendBox() {
 
     return (
         <section className=' py-4 px-12 flex flex-col gap-y-2 items-center  '>
-            <h1 className='text-4xl font-semibold text-text-focus '>Please Send any text and you will get the 4 digit code</h1>
+            <h1 className='text-4xl font-semibold text-text-focus '>Send any text or files and get the Message Code.</h1>
             <section className='flex gap-x-4'>
                 <div>
                     <input onClick={() => { setCurrentSendType("text") }} defaultChecked id="text" type="radio" name="inputType" />
@@ -63,7 +65,7 @@ export function SendBox() {
 
                 <div>
                     <input onClick={() => { setCurrentSendType("files") }} id="file" type="radio" name="inputType" />
-                    <label htmlFor="file"> Files</label>
+                    <label htmlFor="file"> File</label>
                 </div>
             </section>
 
