@@ -22,13 +22,25 @@ export function ReceiveBox() {
     const url = `https://wuzyjjpsxprqujastctb.supabase.co/storage/v1/object/public/swift-send/${message}`
     console.log('the src url is', url)
 
-    const handleDownload = () => {
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = message;
-        link.click();
 
-    }
+
+    const handleDownload = async () => {
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = message || 'download'; // filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href); // cleanup
+        } catch (error) {
+            console.error("Download failed:", error);
+        }
+    };
+
+
 
     return (
         <section className=' py-4 px-12 flex flex-col gap-y-2 items-center'>

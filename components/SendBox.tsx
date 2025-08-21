@@ -60,12 +60,12 @@ export function SendBox() {
             <section className='flex gap-x-4'>
                 <div>
                     <input onClick={() => { setCurrentSendType("text") }} defaultChecked id="text" type="radio" name="inputType" />
-                    <label htmlFor="text"> Text</label>
+                    <label className='text-text-focus' htmlFor="text"> Text</label>
                 </div>
 
                 <div>
                     <input onClick={() => { setCurrentSendType("files") }} id="file" type="radio" name="inputType" />
-                    <label htmlFor="file"> File</label>
+                    <label className='text-text-focus' htmlFor="file"> File</label>
                 </div>
             </section>
 
@@ -81,13 +81,15 @@ export function SendBox() {
 
                 {currentSendType == 'files' && (
                     <input
+
                         onChange={(e) => {
                             setFiles(e.target.files?.[0])
 
                         }}
                         type="file"
-                        className=''
+
                         accept='image/*,.pdf,'
+                        className='p-4 text-text-focus border border-border-muted rounded-md'
                     />)}
 
             </div>

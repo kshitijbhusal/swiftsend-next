@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='bg-background-primary '>
-        <div className='container mx-auto border-x'>
+        <div className='container mx-auto'>
 
           {children}
         </div>
