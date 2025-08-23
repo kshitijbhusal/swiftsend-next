@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import { LoaderCircle } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -7,15 +8,17 @@ export function ReceiveBox() {
     const [code, setCode] = useState("")
     const [message, setMessage] = useState("")
     const [type, setType] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const getMessage = async () => {
+        setLoading(true)
 
         const res = await axios.get(`api/receive?code=${code.toUpperCase()}`)
 
         if (res.status == 200) {
             setMessage(res.data.message)
             setType(res.data.type)
-            console.log('res is', res.data.type)
+            setLoading(false)
         }
 
     }
@@ -53,7 +56,8 @@ export function ReceiveBox() {
             <div className=' w-full flex justify-center gap-x-4 p-2 mt-12' >
                 <input onChange={(e) => { setCode(e.target.value) }} placeholder=' E4AC' className='border p-2  text-text-focus text-xl outline-none border-zinc-500 rounded-xl w-32 uppercase font-semibold' type="text" />
 
-                <button onClick={getMessage} className='px-2 py-1 rounded-xl bg-sky-500/80 text-white font-semibold cursor-pointer w-32' >Get Message</button>
+                <button onClick={getMessage} className='px-2 py-1 rounded-xl bg-sky-500/80 text-white font-semibold cursor-pointer w-32' >
+                    Get Message {loading && <span> <LoaderCircle className='animate-spin' /> </span>} </button>
             </div>
             <div>
                 {message && (

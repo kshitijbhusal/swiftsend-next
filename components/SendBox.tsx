@@ -2,14 +2,21 @@
 import { supabase } from '@/lib/supabaseClient'
 import axios from 'axios'
 import { useState } from 'react'
+import { LoaderCircle } from 'lucide-react';
 
 export function SendBox() {
     const [message, setMessage] = useState("")
     const [files, setFiles] = useState<File>()
     const [messageCode, setMessageCode] = useState("")
     const [currentSendType, setCurrentSendType] = useState("text")
+    const [loading, setLoading] = useState(false)
+
+
+
+
 
     const sendMessage = async () => {
+        setLoading(true)
 
         if (currentSendType == 'text') {
             const res = await axios.post('api/send', {
@@ -19,6 +26,7 @@ export function SendBox() {
 
             if (res.status == 200) {
                 setMessageCode(res.data.messageCode)
+                setLoading(false)
             }
 
         }
@@ -47,7 +55,7 @@ export function SendBox() {
             }
             console.log('datais', data)
             console.log('error is', error)
-
+            setLoading(false)
         }
 
 
@@ -98,7 +106,9 @@ export function SendBox() {
             <div className=' w-full flex justify-between p-2'>
                 {messageCode && <p className='text-base text-text-muted '>Your message code is : {messageCode}</p>}
 
-                <button onClick={sendMessage} className='px-3 py-1 rounded bg-sky-500/80  text-white border border-border-muted font-semibold cursor-pointer w-fit' >Send</button>
+                <button onClick={sendMessage} className='px-3 py-1 rounded bg-sky-500/80  text-white border border-border-muted font-semibold cursor-pointer w-fit' >
+                    {!loading ? (<span>Send</span>) : (<span className='flex gap-2'> Sending <LoaderCircle size={22} className='animate-spin  ' /> </span>)}
+                </button>
             </div>
         </section>
     )
