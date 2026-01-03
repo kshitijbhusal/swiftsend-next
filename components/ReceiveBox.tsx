@@ -12,9 +12,9 @@ export function ReceiveBox() {
     const [message, setMessage] = useState("")
     const [type, setType] = useState("")
     const [loading, setLoading] = useState(false)
-const [copy, setCopy] = useState("Copy");
+    const [copy, setCopy] = useState("Copy");
 
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
     const getMessage = async () => {
         setLoading(true)
@@ -50,20 +50,15 @@ const [copy, setCopy] = useState("Copy");
     };
 
 
-    const handelCopy = ()=>{
-        
-        const text = inputRef.current?.value
-        navigator.clipboard.writeText(text)
+    const handelCopy = () => {
+      
+            const text = inputRef.current?.value ?? '';
+            navigator.clipboard.writeText(text)
 
 
+        setCopy("Copied Text!")
 
-
-
-        
-
-        setCopy("Copied!")
-
-        setTimeout(()=>{
+        setTimeout(() => {
             setCopy("Copy")
         }, 1000)
 
@@ -84,7 +79,7 @@ const [copy, setCopy] = useState("Copy");
             </h1>
 
             <div className=' w-full flex justify-center gap-x-4 p-2 mt-12' >
-                <input  onChange={(e) => { setCode(e.target.value) }} placeholder=' E4AC' className='border p-2  text-text-focus text-xl outline-none border-zinc-500 rounded-xl w-32 uppercase font-semibold' type="text" />
+                <input onChange={(e) => { setCode(e.target.value) }} placeholder=' E4AC' className='border p-2  text-text-focus text-xl outline-none border-zinc-500 rounded-xl w-32 uppercase font-semibold' type="text" />
 
                 <button onClick={getMessage} className='px-2 py-1 rounded-xl bg-sky-500/80 text-white font-semibold cursor-pointer w-32' >
                     Get Message {loading && <span> <LoaderCircle className='animate-spin' /> </span>} </button>
