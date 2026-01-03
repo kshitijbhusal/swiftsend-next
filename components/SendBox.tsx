@@ -32,31 +32,31 @@ export function SendBox() {
         }
 
 
-        if (currentSendType == 'files' && files) {
+        // if (currentSendType == 'files' && files) {
 
-            const fileName = files.name
-
-
-
-            const { data, error } = await supabase.storage.from("swift-send").upload(fileName, files)
-
-            if (data) {
-                console.log(data.id)
-                const res = await axios.post('api/send', {
-                    message: data?.path,
-                    type: "file"
-                })
-
-                if (res.status == 200) {
-                    setMessageCode(res.data.messageCode)
-                }
+        //     const fileName = files.name
 
 
-            }
-            console.log('datais', data)
-            console.log('error is', error)
-            setLoading(false)
-        }
+
+        //     const { data, error } = await supabase.storage.from("swift-send").upload(fileName, files)
+
+        //     if (data) {
+        //         console.log(data.id)
+        //         const res = await axios.post('api/send', {
+        //             message: data?.path,
+        //             type: "file"
+        //         })
+
+        //         if (res.status == 200) {
+        //             setMessageCode(res.data.messageCode)
+        //         }
+
+
+        //     }
+        //     console.log('datais', data)
+        //     console.log('error is', error)
+        //     setLoading(false)
+        // }
 
 
 

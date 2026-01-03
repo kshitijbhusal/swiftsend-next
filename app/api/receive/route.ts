@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 
     const prisma = new PrismaClient()
 
-    console.log(req)
+    // console.log(req)
 
     const row = await
         prisma.message.findFirst({

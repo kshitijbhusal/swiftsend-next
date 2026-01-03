@@ -3,12 +3,18 @@ import axios from 'axios'
 import { LoaderCircle } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useRef } from 'react'
+
+
 
 export function ReceiveBox() {
     const [code, setCode] = useState("")
     const [message, setMessage] = useState("")
     const [type, setType] = useState("")
     const [loading, setLoading] = useState(false)
+const [copy, setCopy] = useState("Copy");
+
+    const inputRef = useRef(null);
 
     const getMessage = async () => {
         setLoading(true)
@@ -44,6 +50,30 @@ export function ReceiveBox() {
     };
 
 
+    const handelCopy = ()=>{
+        
+        const text = inputRef.current?.value
+        navigator.clipboard.writeText(text)
+
+
+
+
+
+        
+
+        setCopy("Copied!")
+
+        setTimeout(()=>{
+            setCopy("Copy")
+        }, 1000)
+
+
+
+
+    }
+
+
+
 
     return (
         <section className=' py-4 px-12 flex flex-col gap-y-2 items-center'>
@@ -54,7 +84,7 @@ export function ReceiveBox() {
             </h1>
 
             <div className=' w-full flex justify-center gap-x-4 p-2 mt-12' >
-                <input onChange={(e) => { setCode(e.target.value) }} placeholder=' E4AC' className='border p-2  text-text-focus text-xl outline-none border-zinc-500 rounded-xl w-32 uppercase font-semibold' type="text" />
+                <input  onChange={(e) => { setCode(e.target.value) }} placeholder=' E4AC' className='border p-2  text-text-focus text-xl outline-none border-zinc-500 rounded-xl w-32 uppercase font-semibold' type="text" />
 
                 <button onClick={getMessage} className='px-2 py-1 rounded-xl bg-sky-500/80 text-white font-semibold cursor-pointer w-32' >
                     Get Message {loading && <span> <LoaderCircle className='animate-spin' /> </span>} </button>
@@ -66,8 +96,8 @@ export function ReceiveBox() {
                         {
                             type == 'text' ? (
                                 <div>
-                                    <textarea value={message} readOnly={true} className='border-1 border-stone-600 rounded-2xl px-2 py-2 outline-none h-24 w-full mt-4' />
-                                    <button>copy</button>
+                                    <textarea ref={inputRef} value={message} readOnly={true} className='border-1 border-stone-600 rounded-2xl px-2 py-2 outline-none h-24 w-full mt-4' />
+                                    <button className='bg-green-400 px-2  py-1 hover:bg-green-500 cursor-pointer rounded-md ' onClick={handelCopy} >{copy}</button>
                                 </div>
 
                             ) : (
