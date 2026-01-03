@@ -50,7 +50,9 @@ export function ReceiveBox() {
     };
 
 
-    const handelCopy = () => {
+
+
+        const handelCopyFun = () => {
       
             const text = inputRef.current?.value ?? '';
             navigator.clipboard.writeText(text)
@@ -92,7 +94,7 @@ export function ReceiveBox() {
                             type == 'text' ? (
                                 <div>
                                     <textarea ref={inputRef} value={message} readOnly={true} className='border-1 border-stone-600 rounded-2xl px-2 py-2 outline-none h-24 w-full mt-4' />
-                                    <button className='bg-green-400 px-2  py-1 hover:bg-green-500 cursor-pointer rounded-md ' onClick={handelCopy} >{copy}</button>
+                                    <button className='bg-green-400 px-2  py-1 hover:bg-green-500 cursor-pointer rounded-md ' onClick={handelCopyFun} >{copy}</button>
                                 </div>
 
                             ) : (
