@@ -68,7 +68,7 @@ export default function Page() {
 
 
           <section>
-            {currentTab == "send" ? <SendBox /> : <ReceiveBox />}
+            {currentTab == "send" ? <SendBox /> : <Receive />}
           </section>
 
         </section>
