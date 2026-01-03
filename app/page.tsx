@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Send, Download, Sun, Moon } from 'lucide-react';
 
 import { SendBox } from '@/components/SendBox';
-import { ReceiveBox } from '@/components/ReceiveBox';
+import { Receive } from '@/components/Receive';
 
 
 export default function Page() {
